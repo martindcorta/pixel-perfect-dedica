@@ -50,7 +50,7 @@ export function Particles() {
     const mesh = meshRef.current;
     if (!mesh) return;
     for (let i = 0; i < MAX; i++) {
-      const p = pool[i];
+      const p = pool[i]!;
       if (p.life > 0) {
         p.life -= delta * 1.4;
         p.vy -= 20 * delta;

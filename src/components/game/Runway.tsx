@@ -73,7 +73,7 @@ export function Runway() {
         dummy.scale.set(b.w, b.h, b.w);
         dummy.updateMatrix();
         bm.setMatrixAt(i, dummy.matrix);
-        bm.setColorAt(i, tmpColor.set(BUILDING_COLORS[b.c]));
+        bm.setColorAt(i, tmpColor.set(BUILDING_COLORS[b.c]!));
       });
       bm.instanceMatrix.needsUpdate = true;
       if (bm.instanceColor) bm.instanceColor.needsUpdate = true;

@@ -83,11 +83,11 @@ export function Scene() {
     const heavy = Math.random();
     const count = heavy > 0.72 ? 2 : 1;
     for (let i = 0; i < count; i++) {
-      const lane = lanes[Math.floor(Math.random() * 3)];
+      const lane = lanes[Math.floor(Math.random() * 3)]!;
       if (blocked.has(lane)) continue;
       blocked.add(lane);
       const kind = Math.floor(Math.random() * 3);
-      spawn(obstacles[kind], lane, SPAWN_Z);
+      spawn(obstacles[kind]!, lane, SPAWN_Z);
     }
     const free = lanes.filter((l) => !blocked.has(l));
     const coinLane = free[Math.floor(Math.random() * free.length)];
@@ -172,7 +172,7 @@ export function Scene() {
     // ---- obstacles ----
     obstacles.forEach((pool, kind) => {
       const mesh = obstacleMeshes.current[kind];
-      const spec = OBSTACLE_SPECS[kind];
+      const spec = OBSTACLE_SPECS[kind]!;
       if (!mesh) return;
       pool.forEach((e, i) => {
         if (e.active) {
@@ -189,7 +189,7 @@ export function Scene() {
             e.active = false;
             runtime.invuln = 1.3;
             runtime.shake = 1;
-            runtime.burst(LANE_X[e.lane], spec.y, 0, spec.color, 18);
+            runtime.burst(LANE_X[e.lane]!, spec.y, 0, spec.color, 18);
             sfx.crash();
             const lives = store.lives - 1;
             useGameStore.setState({ lives, combo: 0, multiplier: 1 });
@@ -197,7 +197,7 @@ export function Scene() {
             if (lives <= 0) useGameStore.getState().finish();
           }
         }
-        dummy.position.set(LANE_X[e.lane], e.active ? spec.y : -50, e.z);
+        dummy.position.set(LANE_X[e.lane]!, e.active ? spec.y : -50, e.z);
         dummy.rotation.set(0, 0, 0);
         dummy.scale.setScalar(e.active ? 1 : 0.0001);
         dummy.updateMatrix();
@@ -223,11 +223,11 @@ export function Scene() {
           ) {
             e.active = false;
             collect(BRAND.points.coin, "coin");
-            runtime.burst(LANE_X[e.lane], 1.1, 0, BRAND.colors.coin, 5);
+            runtime.burst(LANE_X[e.lane]!, 1.1, 0, BRAND.colors.coin, 5);
             sfx.coin();
           }
         }
-        dummy.position.set(LANE_X[e.lane], e.active ? 1.1 : -50, e.z);
+        dummy.position.set(LANE_X[e.lane]!, e.active ? 1.1 : -50, e.z);
         dummy.rotation.set(Math.PI / 2, 0, spin + i);
         dummy.scale.setScalar(e.active ? 1 : 0.0001);
         dummy.updateMatrix();
@@ -246,15 +246,15 @@ export function Scene() {
         if (e.active && active && Math.abs(e.z) < 1.1 && e.lane === runtime.lane && runtime.playerY < 1.7) {
           e.active = false;
           collect(BRAND.points.brandedBox, "brand");
-          runtime.burst(LANE_X[e.lane], 1.0, 0, BRAND.colors.primary, 10);
-          runtime.burst(LANE_X[e.lane], 1.0, 0, BRAND.colors.secondary, 8);
-          runtime.burst(LANE_X[e.lane], 1.0, 0, BRAND.colors.tertiary, 8);
+          runtime.burst(LANE_X[e.lane]!, 1.0, 0, BRAND.colors.primary, 10);
+          runtime.burst(LANE_X[e.lane]!, 1.0, 0, BRAND.colors.secondary, 8);
+          runtime.burst(LANE_X[e.lane]!, 1.0, 0, BRAND.colors.tertiary, 8);
           runtime.shake = 0.5;
           sfx.brand();
           const free = logos.find((l) => !l.active);
           if (free) {
             free.active = true;
-            free.x = LANE_X[e.lane];
+            free.x = LANE_X[e.lane]!;
             free.y = 1.1;
             free.z = 0;
             free.t = 0;
@@ -262,7 +262,7 @@ export function Scene() {
         }
       }
       group.visible = e.active;
-      group.position.set(LANE_X[e.lane], 0.9, e.z);
+      group.position.set(LANE_X[e.lane]!, 0.9, e.z);
       group.rotation.y += delta * 1.1;
     });
 
@@ -276,13 +276,13 @@ export function Scene() {
         if (e.active && active && Math.abs(e.z) < 1.1 && e.lane === runtime.lane && runtime.playerY < 2.4) {
           e.active = false;
           collect(BRAND.points.rareGem, "gem");
-          runtime.burst(LANE_X[e.lane], 1.4, 0, BRAND.colors.gem, 20);
+          runtime.burst(LANE_X[e.lane]!, 1.4, 0, BRAND.colors.gem, 20);
           runtime.shake = 0.4;
           sfx.gem();
         }
       }
       group.visible = e.active;
-      group.position.set(LANE_X[e.lane], 1.45 + Math.sin(performance.now() * 0.003 + i) * 0.15, e.z);
+      group.position.set(LANE_X[e.lane]!, 1.45 + Math.sin(performance.now() * 0.003 + i) * 0.15, e.z);
       group.rotation.y += delta * 1.8;
     });
 
@@ -357,7 +357,7 @@ export function Scene() {
           ref={(m) => {
             obstacleMeshes.current[kind] = m;
           }}
-          args={[undefined, undefined, obstacles[kind].length]}
+          args={[undefined, undefined, obstacles[kind]!.length]}
           castShadow
           frustumCulled={false}
         >

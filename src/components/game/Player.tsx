@@ -51,7 +51,7 @@ export function Player({ groupRef }: { groupRef: React.RefObject<THREE.Group | n
     runtime.moveLeft = runtime.moveRight = runtime.jump = false;
 
     // lateral easing toward target lane
-    const targetX = LANE_X[runtime.lane];
+    const targetX = LANE_X[runtime.lane]!;
     const prevX = runtime.playerX;
     runtime.playerX += (targetX - runtime.playerX) * (1 - Math.exp(-13 * delta));
 
