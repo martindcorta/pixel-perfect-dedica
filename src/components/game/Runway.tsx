@@ -12,9 +12,7 @@ const BUILDINGS = 26;
 const DASHES = 40;
 const PILLARS = 18;
 
-const BUILDING_COLORS = ["#121a2e", "#182votes", "#16203a", "#1b2745", "#101830"].map((c) =>
-  c.includes("votes") ? "#182338" : c,
-);
+const BUILDING_COLORS = ["#121a2e", "#182338", "#16203a", "#1b2745", "#101830"];
 
 type Slot = { x: number; z: number; h: number; w: number; c: number };
 
