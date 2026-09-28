@@ -21,7 +21,7 @@ export function useGameInput() {
     let handled = false;
 
     const onTouchStart = (e: TouchEvent) => {
-      const t = e.touches[0];
+      const t = e.touches[0]!;
       sx = t.clientX;
       sy = t.clientY;
       st = performance.now();
@@ -29,7 +29,7 @@ export function useGameInput() {
     };
     const onTouchMove = (e: TouchEvent) => {
       if (handled) return;
-      const t = e.touches[0];
+      const t = e.touches[0]!;
       const dx = t.clientX - sx;
       const dy = t.clientY - sy;
       if (Math.abs(dx) > 34 && Math.abs(dx) > Math.abs(dy)) {
