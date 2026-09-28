@@ -1,0 +1,10 @@
+export const LANE_X = [-2.3, 0, 2.3] as const;
+export const BASE_SPEED = 15;
+export const MAX_SPEED = 27;
+export const JUMP_VELOCITY = 10.2;
+export const GRAVITY = -27;
+export const SPAWN_Z = -120;
+export const DESPAWN_Z = 14;
+export const LOOP_LENGTH = 160;
+export const PLAYER_START_LANE = 1;
+export const MAX_LIVES = 3;
