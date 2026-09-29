@@ -13,15 +13,20 @@ import { Runway } from "./Runway";
 
 const dummy = new THREE.Object3D();
 
-type Ent = { active: boolean; lane: number; z: number };
+type Ent = { active: boolean; lane: number; z: number; colorIdx: number; colorDirty: boolean };
 type Logo = { active: boolean; x: number; y: number; z: number; t: number };
 
-const make = (n: number): Ent[] => Array.from({ length: n }, () => ({ active: false, lane: 1, z: 0 }));
+const make = (n: number): Ent[] =>
+  Array.from({ length: n }, () => ({ active: false, lane: 1, z: 0, colorIdx: 0, colorDirty: false }));
+
+// Every obstacle takes one of the three brand colors (green / red / blue) per instance.
+const OBSTACLE_HEX = [BRAND.colors.primary, BRAND.colors.secondary, BRAND.colors.tertiary];
+const OBSTACLE_COLORS = OBSTACLE_HEX.map((h) => new THREE.Color(h).lerp(new THREE.Color("#ffffff"), 0.22));
 
 const OBSTACLE_SPECS = [
-  { key: "crate", size: [1.3, 1.3, 1.3] as const, y: 0.65, color: "#a2652f", emissive: "#3a2109" },
-  { key: "barrier", size: [1.9, 1.0, 0.3] as const, y: 0.5, color: "#d8623a", emissive: "#671f0a" },
-  { key: "block", size: [1.7, 1.15, 1.1] as const, y: 0.58, color: "#5b6b82", emissive: "#131a28" },
+  { key: "crate", size: [1.3, 1.3, 1.3] as const, y: 0.65 },
+  { key: "barrier", size: [1.9, 1.0, 0.3] as const, y: 0.5 },
+  { key: "block", size: [1.7, 1.15, 1.1] as const, y: 0.58 },
 ];
 
 export function Scene() {
@@ -67,10 +72,12 @@ export function Scene() {
 
   const spawn = (pool: Ent[], lane: number, z: number) => {
     const e = pool.find((p) => !p.active);
-    if (!e) return;
+    if (!e) return undefined;
     e.active = true;
     e.lane = lane;
     e.z = z;
+    e.colorDirty = true;
+    return e;
   };
 
   const spawnCoinRun = (lane: number, z: number, count = 5) => {
@@ -87,7 +94,8 @@ export function Scene() {
       if (blocked.has(lane)) continue;
       blocked.add(lane);
       const kind = Math.floor(Math.random() * 3);
-      spawn(obstacles[kind]!, lane, SPAWN_Z);
+      const e = spawn(obstacles[kind]!, lane, SPAWN_Z);
+      if (e) e.colorIdx = Math.floor(Math.random() * OBSTACLE_HEX.length);
     }
     const free = lanes.filter((l) => !blocked.has(l));
     const coinLane = free[Math.floor(Math.random() * free.length)];
@@ -175,6 +183,11 @@ export function Scene() {
       const spec = OBSTACLE_SPECS[kind]!;
       if (!mesh) return;
       pool.forEach((e, i) => {
+        if (e.colorDirty) {
+          mesh.setColorAt(i, OBSTACLE_COLORS[e.colorIdx]!);
+          e.colorDirty = false;
+          if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true;
+        }
         if (e.active) {
           e.z += move;
           if (e.z > DESPAWN_Z) e.active = false;
@@ -189,11 +202,11 @@ export function Scene() {
             e.active = false;
             runtime.invuln = 1.3;
             runtime.shake = 1;
-            runtime.burst(LANE_X[e.lane]!, spec.y, 0, spec.color, 18);
+            runtime.burst(LANE_X[e.lane]!, spec.y, 0, OBSTACLE_HEX[e.colorIdx]!, 18);
             sfx.crash();
             const lives = store.lives - 1;
             useGameStore.setState({ lives, combo: 0, multiplier: 1 });
-            store.pushPopup("HIT", "bad");
+            store.pushPopup("¡GOLPE!", "bad");
             if (lives <= 0) useGameStore.getState().finish();
           }
         }
@@ -363,10 +376,10 @@ export function Scene() {
         >
           <boxGeometry args={[spec.size[0], spec.size[1], spec.size[2]]} />
           <meshStandardMaterial
-            color={spec.color}
-            emissive={spec.emissive}
-            emissiveIntensity={0.5}
-            roughness={0.7}
+            color="#ffffff"
+            emissive="#101828"
+            emissiveIntensity={0.35}
+            roughness={0.6}
           />
         </instancedMesh>
       ))}
