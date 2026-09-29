@@ -142,3 +142,34 @@
     color: var(--color-foreground);
   }
 }
+
+:root {
+  --background: oklch(0.14 0.03 255);
+  --foreground: oklch(0.97 0.01 250);
+  --card: oklch(0.19 0.035 255);
+  --muted-foreground: oklch(0.72 0.03 250);
+  --brand-green: #0e9f4f;
+  --brand-red: #c8202e;
+  --brand-blue: #0c6fc0;
+  --coin: #f5c84c;
+  --gem: #5ee7ff;
+}
+
+@theme inline {
+  --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+}
+
+@keyframes float-up {
+  0% { opacity: 0; transform: translateY(10px) scale(0.8); }
+  20% { opacity: 1; transform: translateY(0) scale(1.1); }
+  100% { opacity: 0; transform: translateY(-50px) scale(1); }
+}
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(4deg); }
+}
+@utility animate-float-up { animation: float-up 0.9s ease-out forwards; }
+@utility animate-float-slow { animation: float-slow 4s ease-in-out infinite; }
+
+html, body { overscroll-behavior: none; touch-action: none; }
