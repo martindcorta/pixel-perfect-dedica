@@ -3,7 +3,7 @@ import * as THREE from "three";
 import { BRAND } from "@/config/brand";
 
 /**
- * The brand mark as a 3D object: a rounded-feel cube whose visible faces
+ * The brand mark as a 3D object: a rounded sphere whose visible faces
  * carry the brand's three colors (green top, red left, blue right).
  */
 export function BrandCube({ size = 1, emissive = 0.35 }: { size?: number; emissive?: number }) {
@@ -24,7 +24,7 @@ export function BrandCube({ size = 1, emissive = 0.35 }: { size?: number; emissi
 
   return (
     <mesh castShadow material={materials}>
-      <boxGeometry args={[size, size, size]} />
+      <sphereGeometry args={[size * 0.6, 32, 32]} />
     </mesh>
   );
 }

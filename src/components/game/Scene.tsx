@@ -10,6 +10,7 @@ import { BrandCube } from "./BrandCube";
 import { Particles } from "./Particles";
 import { Player } from "./Player";
 import { Runway } from "./Runway";
+import { SideLogos } from "./SideLogos";
 
 const dummy = new THREE.Object3D();
 
@@ -17,11 +18,19 @@ type Ent = { active: boolean; lane: number; z: number; colorIdx: number; colorDi
 type Logo = { active: boolean; x: number; y: number; z: number; t: number };
 
 const make = (n: number): Ent[] =>
-  Array.from({ length: n }, () => ({ active: false, lane: 1, z: 0, colorIdx: 0, colorDirty: false }));
+  Array.from({ length: n }, () => ({
+    active: false,
+    lane: 1,
+    z: 0,
+    colorIdx: 0,
+    colorDirty: false,
+  }));
 
 // Every obstacle takes one of the three brand colors (green / red / blue) per instance.
 const OBSTACLE_HEX = [BRAND.colors.primary, BRAND.colors.secondary, BRAND.colors.tertiary];
-const OBSTACLE_COLORS = OBSTACLE_HEX.map((h) => new THREE.Color(h).lerp(new THREE.Color("#ffffff"), 0.22));
+const OBSTACLE_COLORS = OBSTACLE_HEX.map((h) =>
+  new THREE.Color(h).lerp(new THREE.Color("#ffffff"), 0.22),
+);
 
 const OBSTACLE_SPECS = [
   { key: "crate", size: [1.3, 1.3, 1.3] as const, y: 0.65 },
@@ -99,7 +108,8 @@ export function Scene() {
     }
     const free = lanes.filter((l) => !blocked.has(l));
     const coinLane = free[Math.floor(Math.random() * free.length)];
-    if (coinLane !== undefined && Math.random() > 0.25) spawnCoinRun(coinLane, SPAWN_Z - 4, 3 + Math.floor(Math.random() * 3));
+    if (coinLane !== undefined && Math.random() > 0.25)
+      spawnCoinRun(coinLane, SPAWN_Z - 4, 3 + Math.floor(Math.random() * 3));
   };
 
   const triggerEvent = () => {
@@ -256,7 +266,13 @@ export function Scene() {
       if (e.active) {
         e.z += move;
         if (e.z > DESPAWN_Z) e.active = false;
-        if (e.active && active && Math.abs(e.z) < 1.1 && e.lane === runtime.lane && runtime.playerY < 1.7) {
+        if (
+          e.active &&
+          active &&
+          Math.abs(e.z) < 1.1 &&
+          e.lane === runtime.lane &&
+          runtime.playerY < 1.7
+        ) {
           e.active = false;
           collect(BRAND.points.brandedBox, "brand");
           runtime.burst(LANE_X[e.lane]!, 1.0, 0, BRAND.colors.primary, 10);
@@ -286,7 +302,13 @@ export function Scene() {
       if (e.active) {
         e.z += move;
         if (e.z > DESPAWN_Z) e.active = false;
-        if (e.active && active && Math.abs(e.z) < 1.1 && e.lane === runtime.lane && runtime.playerY < 2.4) {
+        if (
+          e.active &&
+          active &&
+          Math.abs(e.z) < 1.1 &&
+          e.lane === runtime.lane &&
+          runtime.playerY < 2.4
+        ) {
           e.active = false;
           collect(BRAND.points.rareGem, "gem");
           runtime.burst(LANE_X[e.lane]!, 1.4, 0, BRAND.colors.gem, 20);
@@ -295,7 +317,11 @@ export function Scene() {
         }
       }
       group.visible = e.active;
-      group.position.set(LANE_X[e.lane]!, 1.45 + Math.sin(performance.now() * 0.003 + i) * 0.15, e.z);
+      group.position.set(
+        LANE_X[e.lane]!,
+        1.45 + Math.sin(performance.now() * 0.003 + i) * 0.15,
+        e.z,
+      );
       group.rotation.y += delta * 1.8;
     });
 
@@ -361,6 +387,7 @@ export function Scene() {
   return (
     <group>
       <Runway />
+      <SideLogos />
       <Player groupRef={playerRef} />
       <Particles />
 
@@ -374,7 +401,7 @@ export function Scene() {
           castShadow
           frustumCulled={false}
         >
-          <boxGeometry args={[spec.size[0], spec.size[1], spec.size[2]]} />
+          <capsuleGeometry args={[spec.size[0] * 0.45, spec.size[1] * 0.5, 4, 16]} />
           <meshStandardMaterial
             color="#ffffff"
             emissive="#101828"
@@ -410,7 +437,7 @@ export function Scene() {
           visible={false}
         >
           <mesh castShadow>
-            <boxGeometry args={[1.45, 1.45, 1.45]} />
+            <sphereGeometry args={[0.9, 32, 32]} />
             <meshStandardMaterial
               color="#0d1424"
               emissive={BRAND.colors.primary}

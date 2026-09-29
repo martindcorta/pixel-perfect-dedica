@@ -22,8 +22,8 @@ export function StartScreen() {
       </h1>
       <p className="mt-2 text-xs tracking-[0.4em] text-muted-foreground sm:text-sm">CORREDOR 3D</p>
       <p className="mt-6 max-w-sm text-sm text-muted-foreground">
-        Una carrera contrarreloj por la ciudad. Esquiva obstáculos, rompe las cajas Dedica y haz crecer tu
-        multiplicador.
+        Una carrera contrarreloj por la ciudad. Esquiva obstáculos, rompe las cajas Dedica y haz
+        crecer tu multiplicador.
       </p>
       <button
         onClick={startRun}
@@ -32,7 +32,9 @@ export function StartScreen() {
         COMENZAR
       </button>
       <div className="mt-6 text-[10px] tracking-[0.25em] text-muted-foreground">
-        <span className="hidden sm:inline">A / D O ← → PARA MOVER · ESPACIO O CLIC PARA SALTAR</span>
+        <span className="hidden sm:inline">
+          A / D O ← → PARA MOVER · ESPACIO O CLIC PARA SALTAR
+        </span>
         <span className="sm:hidden">DESLIZA PARA MOVER · TOCA PARA SALTAR</span>
       </div>
       {highScore > 0 && (
@@ -61,12 +63,16 @@ export function ResultsScreen() {
         <h2 className="mt-5 font-display text-3xl font-extrabold tracking-[0.16em] text-foreground">
           {finished ? "¡CORRIDA COMPLETA!" : "CORRIDA TERMINADA"}
         </h2>
-        <div className="mt-6 text-[10px] tracking-[0.35em] text-muted-foreground">PUNTAJE FINAL</div>
+        <div className="mt-6 text-[10px] tracking-[0.35em] text-muted-foreground">
+          PUNTAJE FINAL
+        </div>
         <div className="font-display text-5xl font-extrabold tabular-nums text-foreground">
           {rounded.toLocaleString("es-MX")}
         </div>
         {rounded >= highScore && rounded > 0 && (
-          <div className="mt-2 text-xs font-bold tracking-[0.25em] text-[color:var(--coin)]">¡NUEVO RÉCORD!</div>
+          <div className="mt-2 text-xs font-bold tracking-[0.25em] text-[color:var(--coin)]">
+            ¡NUEVO RÉCORD!
+          </div>
         )}
         <div className="mt-6 rounded-2xl bg-[color:var(--brand-green)]/12 px-4 py-3 text-sm font-bold tracking-[0.18em] text-[color:var(--brand-green)]">
           {BRAND.achievement}

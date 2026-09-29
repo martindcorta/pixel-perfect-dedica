@@ -7,7 +7,16 @@ const MAX = 180;
 const dummy = new THREE.Object3D();
 const color = new THREE.Color();
 
-type P = { x: number; y: number; z: number; vx: number; vy: number; vz: number; life: number; c: string };
+type P = {
+  x: number;
+  y: number;
+  z: number;
+  vx: number;
+  vy: number;
+  vz: number;
+  life: number;
+  c: string;
+};
 
 const pool: P[] = Array.from({ length: MAX }, () => ({
   x: 0,

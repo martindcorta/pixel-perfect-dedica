@@ -8,9 +8,15 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "DEDICA Runner — Showcase 3D Interactivo" },
-      { name: "description", content: "Corre, esquiva y recolecta en un corredor 3D de DEDICA, directo en tu navegador." },
+      {
+        name: "description",
+        content: "Corre, esquiva y recolecta en un corredor 3D de DEDICA, directo en tu navegador.",
+      },
       { property: "og:title", content: "DEDICA Runner — Showcase 3D Interactivo" },
-      { property: "og:description", content: "Corre, esquiva y recolecta en un corredor 3D de DEDICA, directo en tu navegador." },
+      {
+        property: "og:description",
+        content: "Corre, esquiva y recolecta en un corredor 3D de DEDICA, directo en tu navegador.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

@@ -9,7 +9,8 @@ import { useGameStore } from "@/game/store";
 export function useGameInput() {
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
-      if (["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Space"].includes(e.code)) e.preventDefault();
+      if (["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Space"].includes(e.code))
+        e.preventDefault();
       if (e.code === "KeyA" || e.code === "ArrowLeft") runtime.moveLeft = true;
       if (e.code === "KeyD" || e.code === "ArrowRight") runtime.moveRight = true;
       if (e.code === "Space" || e.code === "ArrowUp" || e.code === "KeyW") runtime.jump = true;

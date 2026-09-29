@@ -161,15 +161,37 @@
 }
 
 @keyframes float-up {
-  0% { opacity: 0; transform: translateY(10px) scale(0.8); }
-  20% { opacity: 1; transform: translateY(0) scale(1.1); }
-  100% { opacity: 0; transform: translateY(-50px) scale(1); }
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.8);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(0) scale(1.1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-50px) scale(1);
+  }
 }
 @keyframes float-slow {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-10px) rotate(4deg); }
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(4deg);
+  }
 }
-@utility animate-float-up { animation: float-up 0.9s ease-out forwards; }
-@utility animate-float-slow { animation: float-slow 4s ease-in-out infinite; }
+@utility animate-float-up {
+  animation: float-up 0.9s ease-out forwards;
+}
+@utility animate-float-slow {
+  animation: float-slow 4s ease-in-out infinite;
+}
 
-html, body { overscroll-behavior: none; touch-action: none; }
+html,
+body {
+  overscroll-behavior: none;
+  touch-action: none;
+}

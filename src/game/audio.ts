@@ -37,7 +37,14 @@ class AudioManager {
 
 export const audio = new AudioManager();
 
-function tone(freq: number, type: OscillatorType, dur: number, vol: number, at = 0, slideTo?: number) {
+function tone(
+  freq: number,
+  type: OscillatorType,
+  dur: number,
+  vol: number,
+  at = 0,
+  slideTo?: number,
+) {
   const ctx = audio.context;
   const out = audio.output;
   if (!ctx || !out) return;
@@ -95,6 +102,7 @@ export const sfx = {
     tone(120, "sawtooth", 0.3, 0.2, 0, 50);
   },
   boost: () => tone(180, "sawtooth", 0.5, 0.12, 0, 900),
-  finale: () => [392, 523, 659, 784, 1046].forEach((f, i) => tone(f, "triangle", 0.5, 0.14, i * 0.12)),
+  finale: () =>
+    [392, 523, 659, 784, 1046].forEach((f, i) => tone(f, "triangle", 0.5, 0.14, i * 0.12)),
   start: () => [523, 784].forEach((f, i) => tone(f, "triangle", 0.2, 0.12, i * 0.09)),
 };

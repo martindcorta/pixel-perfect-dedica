@@ -46,7 +46,9 @@ export function HUD() {
             <div className="font-display text-sm font-bold tracking-[0.22em] text-foreground sm:text-base">
               {BRAND.companyName}
             </div>
-            <div className="text-[10px] tracking-[0.3em] text-muted-foreground">{BRAND.tagline}</div>
+            <div className="text-[10px] tracking-[0.3em] text-muted-foreground">
+              {BRAND.tagline}
+            </div>
           </div>
         </div>
 

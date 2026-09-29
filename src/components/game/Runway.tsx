@@ -12,7 +12,7 @@ const BUILDINGS = 26;
 const DASHES = 40;
 const PILLARS = 18;
 
-const BUILDING_COLORS = ["#121a2e", "#182338", "#16203a", "#1b2745", "#101830"];
+const BUILDING_COLORS = ["#ff71ce", "#01cdfe", "#05ffa1", "#b967ff", "#fffb96"];
 
 type Slot = { x: number; z: number; h: number; w: number; c: number };
 
@@ -124,7 +124,7 @@ export function Runway() {
       {/* road edges */}
       {[-4.1, 4.1].map((x) => (
         <mesh key={x} position={[x, 0.09, -60]}>
-          <boxGeometry args={[0.18, 0.18, 320]} />
+          <cylinderGeometry args={[0.18, 0.18, 320, 16]} />
           <meshStandardMaterial
             color="#4de2ff"
             emissive="#4de2ff"
@@ -143,11 +143,11 @@ export function Runway() {
         castShadow
         frustumCulled={false}
       >
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial roughness={0.85} metalness={0.05} />
+        <cylinderGeometry args={[0.5, 0.5, 1, 16]} />
+        <meshStandardMaterial roughness={0.7} metalness={0.2} />
       </instancedMesh>
       <instancedMesh ref={pillarsRef} args={[undefined, undefined, PILLARS]} frustumCulled={false}>
-        <boxGeometry args={[0.35, 2.2, 0.35]} />
+        <capsuleGeometry args={[0.35, 2.2, 4, 8]} />
         <meshStandardMaterial
           color="#2b6fb8"
           emissive="#1d5fa8"

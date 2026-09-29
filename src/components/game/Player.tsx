@@ -74,7 +74,9 @@ export function Player({ groupRef }: { groupRef: React.RefObject<THREE.Group | n
 
     // lean into lane changes, subtle airborne pitch
     const lateralVel = (runtime.playerX - prevX) / Math.max(delta, 0.0001);
-    tilt.current += (THREE.MathUtils.clamp(-lateralVel * 0.035, -0.4, 0.4) - tilt.current) * (1 - Math.exp(-10 * delta));
+    tilt.current +=
+      (THREE.MathUtils.clamp(-lateralVel * 0.035, -0.4, 0.4) - tilt.current) *
+      (1 - Math.exp(-10 * delta));
     group.rotation.z = tilt.current;
     group.rotation.x = runtime.grounded ? 0 : -0.12;
 
@@ -85,7 +87,8 @@ export function Player({ groupRef }: { groupRef: React.RefObject<THREE.Group | n
     // animation speed follows run speed
     const clip = names.includes("sprint") ? "sprint" : names[0];
     const action = clip ? actions[clip] : undefined;
-    if (action) action.timeScale = active ? THREE.MathUtils.clamp(runtime.speed / 15, 0.4, 2.2) : 0.25;
+    if (action)
+      action.timeScale = active ? THREE.MathUtils.clamp(runtime.speed / 15, 0.4, 2.2) : 0.25;
   });
 
   return (
