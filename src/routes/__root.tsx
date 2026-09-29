@@ -77,8 +77,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "DEDICA Runner — Interactive 3D Showcase" },
-      { name: "description", content: "A 3D endless runner built in the browser by DEDICA." },
+      { title: "DEDICA Runner — Showcase 3D Interactivo" },
+      { name: "description", content: "Un corredor 3D infinito en el navegador, creado por DEDICA." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -100,7 +100,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="es-MX">
       <head>
         <HeadContent />
       </head>

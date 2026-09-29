@@ -7,10 +7,10 @@ const GameCanvas = lazy(() => import("@/components/game/GameCanvas"));
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "DEDICA Runner — Interactive 3D Showcase" },
-      { name: "description", content: "Run, dodge and collect in a browser 3D endless runner by DEDICA." },
-      { property: "og:title", content: "DEDICA Runner — Interactive 3D Showcase" },
-      { property: "og:description", content: "Run, dodge and collect in a browser 3D endless runner by DEDICA." },
+      { title: "DEDICA Runner — Showcase 3D Interactivo" },
+      { name: "description", content: "Corre, esquiva y recolecta en un corredor 3D de DEDICA, directo en tu navegador." },
+      { property: "og:title", content: "DEDICA Runner — Showcase 3D Interactivo" },
+      { property: "og:description", content: "Corre, esquiva y recolecta en un corredor 3D de DEDICA, directo en tu navegador." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -21,7 +21,7 @@ export const Route = createFileRoute("/")({
 function Loading() {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-background font-display text-sm tracking-[0.3em] text-muted-foreground">
-      LOADING…
+      CARGANDO…
     </div>
   );
 }
