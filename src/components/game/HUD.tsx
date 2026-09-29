@@ -51,13 +51,13 @@ export function HUD() {
         </div>
 
         <div className="text-right">
-          <div className="text-[10px] tracking-[0.35em] text-muted-foreground">SCORE</div>
+          <div className="text-[10px] tracking-[0.35em] text-muted-foreground">PUNTOS</div>
           <div className="font-display text-3xl font-bold leading-none tabular-nums text-foreground sm:text-4xl">
-            {Math.floor(score).toLocaleString("en-US")}
+            {Math.floor(score).toLocaleString("es-MX")}
           </div>
           {multiplier > 1 && (
             <div className="mt-1 inline-block rounded-full bg-[color:var(--brand-green)]/20 px-2 py-0.5 text-xs font-bold text-[color:var(--brand-green)]">
-              x{multiplier} COMBO
+              COMBO x{multiplier}
             </div>
           )}
         </div>
@@ -75,7 +75,7 @@ export function HUD() {
           ))}
         </div>
         <div className="text-right">
-          <div className="text-[10px] tracking-[0.35em] text-muted-foreground">TIME</div>
+          <div className="text-[10px] tracking-[0.35em] text-muted-foreground">TIEMPO</div>
           <div
             className={`font-display text-xl font-bold tabular-nums ${
               timeLeft <= 10 ? "text-[color:var(--brand-red)]" : "text-foreground"
@@ -88,7 +88,7 @@ export function HUD() {
 
       {boostActive && (
         <div className="absolute left-1/2 top-24 -translate-x-1/2 animate-pulse font-display text-sm font-bold tracking-[0.3em] text-[color:var(--gem)]">
-          SPEED BOOST
+          ¡TURBO!
         </div>
       )}
 
@@ -107,12 +107,12 @@ export function HUD() {
         className="pointer-events-auto absolute bottom-4 right-4 rounded-full border border-white/15 bg-black/30 px-3 py-2 text-xs text-muted-foreground backdrop-blur transition-colors hover:text-foreground"
         onClick={() => setMuted(audio.toggleMute())}
       >
-        {muted ? "SOUND OFF" : "SOUND ON"}
+        {muted ? "SONIDO OFF" : "SONIDO ON"}
       </button>
 
       <div className="absolute bottom-4 left-4 text-[10px] leading-relaxed tracking-[0.2em] text-muted-foreground">
-        <span className="hidden sm:inline">A / D MOVE · SPACE JUMP</span>
-        <span className="sm:hidden">SWIPE TO MOVE · TAP TO JUMP</span>
+        <span className="hidden sm:inline">A / D MOVER · ESPACIO SALTAR</span>
+        <span className="sm:hidden">DESLIZA PARA MOVER · TOCA PARA SALTAR</span>
       </div>
     </div>
   );

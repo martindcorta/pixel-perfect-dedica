@@ -4,10 +4,10 @@
  */
 export const BRAND = {
   companyName: "DEDICA",
-  tagline: "INTERACTIVE 3D SHOWCASE",
+  tagline: "SHOWCASE 3D INTERACTIVO",
   websiteUrl: "https://dedica.com",
-  ctaLabel: "BUILD SOMETHING LIKE THIS",
-  achievement: "YOU UNLOCKED DEDICA",
+  ctaLabel: "CREA ALGO COMO ESTO",
+  achievement: "¡DESBLOQUEASTE DEDICA!",
   /** Logo cube face colors (top / left / right of the brand mark). */
   colors: {
     primary: "#0e9f4f", // green
