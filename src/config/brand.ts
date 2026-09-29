@@ -3,11 +3,11 @@
  * Swap these values to rebrand the whole experience for another client.
  */
 export const BRAND = {
-  companyName: "DA CORTA",
+  companyName: "DEDICA",
   tagline: "INTERACTIVE 3D SHOWCASE",
-  websiteUrl: "https://dacorta.com",
+  websiteUrl: "https://dedica.com",
   ctaLabel: "BUILD SOMETHING LIKE THIS",
-  achievement: "YOU UNLOCKED DA CORTA",
+  achievement: "YOU UNLOCKED DEDICA",
   /** Logo cube face colors (top / left / right of the brand mark). */
   colors: {
     primary: "#0e9f4f", // green

@@ -24,7 +24,7 @@ interface GameStore {
   pushPopup: (text: string, tone: Popup["tone"]) => void;
 }
 
-const HIGH_SCORE_KEY = "dacorta-runner-high";
+const HIGH_SCORE_KEY = "dedica-runner-high";
 
 function loadHighScore() {
   if (typeof window === "undefined") return 0;
