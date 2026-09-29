@@ -7,8 +7,10 @@ import { runtime } from "@/game/runtime";
 import { useGameStore } from "@/game/store";
 import { sfx } from "@/game/audio";
 
+const RUNNER_MODEL_URL = `${import.meta.env.BASE_URL}models/runner.glb`;
+
 export function Player({ groupRef }: { groupRef: React.RefObject<THREE.Group | null> }) {
-  const { scene, animations } = useGLTF("/models/runner.glb");
+  const { scene, animations } = useGLTF(RUNNER_MODEL_URL);
   const innerRef = useRef<THREE.Group>(null);
   const { actions, names } = useAnimations(animations, innerRef);
   const vy = useRef(0);
@@ -105,4 +107,4 @@ export function Player({ groupRef }: { groupRef: React.RefObject<THREE.Group | n
   );
 }
 
-useGLTF.preload("/models/runner.glb");
+useGLTF.preload(RUNNER_MODEL_URL);
