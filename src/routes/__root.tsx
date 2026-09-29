@@ -77,8 +77,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "DA CORTA Runner — Interactive 3D Showcase" },
-      { name: "description", content: "A 3D endless runner built in the browser by DA CORTA." },
+      { title: "DEDICA Runner — Interactive 3D Showcase" },
+      { name: "description", content: "A 3D endless runner built in the browser by DEDICA." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
