@@ -23,14 +23,14 @@ const html = `<!DOCTYPE html>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>DEDICA Runner — Showcase 3D Interactivo</title>
     <meta name="description" content="Corre, esquiva y recolecta en un corredor 3D de DEDICA, directo en tu navegador." />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&family=Sora:wght@600;700;800&display=swap" />
-    ${css ? `<link rel="stylesheet" href="/assets/${css}" />` : ""}
+    ${css ? `<link rel="stylesheet" href="./assets/${css}" />` : ""}
   </head>
   <body>
     <div id="root"></div>
-    ${jsEntry ? `<script type="module" src="/assets/${jsEntry}"></script>` : ""}
+    ${jsEntry ? `<script type="module" src="./assets/${jsEntry}"></script>` : ""}
   </body>
 </html>`;
 
